@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Modern Dashboard Theme - Identical to Reference */
+@layer base {
+  :root {
+    /* === Light Theme === */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    /* Azul escuro para o modo claro */
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* === Dark Theme === */
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    /* Azul claro para o modo escuro */
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+  * {
+    @apply border-border;
+    user-select: none
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+
+  /* TailAdmin Specific Styles */
+  .tailadmin-card {
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm;
+  }
+
+  .tailadmin-stat-card {
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:shadow-lg transition-shadow duration-200;
+  }
+
+  .tailadmin-chart-card {
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6;
+  }
+
+  .tailadmin-header {
+    @apply bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700;
+  }
+
+  .tailadmin-sidebar {
+    @apply bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700;
+  }
+
+
+@layer components {
+  /* Features section layout adjustments */
+  section.container.pb-20 > [class*="md:grid-cols-3"] > article {
+    @apply h-full min-h-[560px] md:min-h-[600px] flex flex-col justify-between overflow-visible;
+  }
+  section.container.pb-20 > [class*="md:grid-cols-3"] > article figure {
+    @apply mt-6 -mb-12 md:-mb-16;
+  }
+
+
+  /* Development only: Show component name on hover */
+  [data-component-id]:hover {
+    position: relative;
+    outline: 2px solid #ff00ff;
+  }
+
+  [data-component-id]:hover::after {
+    content: attr(data-component-id);
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    background-color: #ff00ff;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 9999;
+    margin-bottom: 4px;
+  }
+}

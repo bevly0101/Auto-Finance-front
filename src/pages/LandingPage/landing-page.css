@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos específicos para a Landing Page */
+.section {
+  @apply py-16 md:py-24;
+}
+
+.section-title {
+  @apply text-3xl md:text-4xl font-bold text-center mb-8;
+}
+
+.card-shadow {
+  @apply shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-all duration-300;
+}
+
+.feature-card {
+  @apply bg-white rounded-xl p-6 card-shadow;
+}
+@layer components {
+  /* Small features containers */
+  section.container.pb-20 > [class*="md:grid-cols-2"] > article {
+    @apply rounded-2xl p-6 md:p-7 bg-card ring-1 ring-border/50 shadow-soft;
+  }
+  section.container.pb-20 > [class*="md:grid-cols-2"] > article:nth-child(2) {
+    @apply bg-surface-indigo;
+  }
+}
