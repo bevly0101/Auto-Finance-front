@@ -124,6 +124,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const signIn = async (email: string, password: string, rememberMe = false) => {
     setLoading(true);
+
+    // Verifica se já existe uma sessão ativa
+    const { data: { session: activeSession } } = await supabase.auth.getSession();
+    if (activeSession) {
+      navigate('/dashboard');
+      setLoading(false);
+      return;
+    }
     
     // Removida a criação de um novo cliente para usar a instância global,
     // resolvendo o aviso "Multiple GoTrueClient instances".

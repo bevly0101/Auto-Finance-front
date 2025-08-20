@@ -32,6 +32,7 @@ const LoginForm: React.FC = () => {
 
     try {
       await signIn(email, password, rememberMe);
+      console.log('oi')
       // A navegação será tratada pelo AuthContext após a verificação do usuário
     } catch (error: any) {
       console.error("Erro de autenticação:", error.message); // Adicionado para depuração
