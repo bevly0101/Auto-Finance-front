@@ -13,7 +13,8 @@ const weekDayAbbreviations: { [key: string]: string } = {
 };
 
 const formatXAxis = (tickItem: string) => {
-  return tickItem; // O tickItem já vem abreviado e capitalizado de useDashboardData
+  const lowercasedTick = tickItem.toLowerCase();
+  return weekDayAbbreviations[lowercasedTick] || tickItem;
 };
 
 /**
