@@ -1,0 +1,5 @@
+# Regra de redirecionamento para Single Page Applications (SPA)
+# Isso redireciona todas as solicitações para o index.html, permitindo
+# que o roteador do lado do cliente (React Router) assuma o controle.
+
+/*    /index.html   200
