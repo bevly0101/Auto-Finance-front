@@ -24,7 +24,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const [theme, setTheme] = useState<Theme>(() => {
     if (isLandingPage) return 'dark';
-    return (localStorage.getItem("theme") as Theme) || "system";
+    return "system";
   });
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     theme,
     setTheme: (newTheme: Theme) => {
       if (!isLandingPage) {
-        localStorage.setItem("theme", newTheme);
+        // localStorage.setItem("theme", newTheme);
       }
       setTheme(newTheme);
     },

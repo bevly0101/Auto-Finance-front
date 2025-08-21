@@ -24,86 +24,25 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getSession = async () => {
-      setLoading(true); // Iniciar carregamento
-      try {
-        const { data: { session: activeSession } } = await supabase.auth.getSession();
-        setSession(activeSession);
-        setUser(activeSession?.user ?? null);
-
-        // Redirecionamento automático se "Lembre de mim" estiver ativo
-        // Redireciona para o dashboard apenas se houver uma sessão ativa.
-        // A lógica de preenchimento de e-mail é tratada na página de login.
-        if (activeSession && window.location.pathname === '/signin') {
-          navigate('/dashboard');
-        }
-      } catch (error) {
-        console.error("Erro ao buscar sessão inicial:", error);
-        // Tratar erro, talvez definindo session/user como null
-        setSession(null);
-        setUser(null);
-      } finally {
-        setLoading(false); // Finalizar carregamento em todos os casos
-      }
-    };
-
-    getSession();
+    setLoading(true);
 
     // Corrigido conforme sua sugestão
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, newSession) => {
-      console.log(_event, newSession)
-      if (_event === 'SIGNED_IN' && newSession?.user) {
-        const { data: userProfile, error: profileError } = await supabase
-          .from('users')
-          .select('plano_id') // Corrigido: Remove a coluna 'verified_code' que não existe
-          .eq('id', newSession.user.id)
-          .single();
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+      setLoading(false);
 
-        if (profileError || !userProfile) {
-          toast({
-            title: "Erro de Perfil",
-            description: "Não foi possível carregar os dados do seu perfil. O acesso foi negado.",
-            variant: "destructive",
-          });
-          await supabase.auth.signOut();
-          return;
-        }
-
-        if (userProfile.plano_id === 99) {
-          toast({
-            title: "Acesso Restrito",
-            description: "Sua conta está temporariamente bloqueada. Entre em contato com o suporte.",
-            variant: "destructive",
-          });
-          await supabase.auth.signOut();
-          return;
-        }
-        
-        // A lógica de verificação de e-mail foi removida temporariamente
-        // já que a coluna 'verified_code' não existe no banco de dados.
-        // TODO: Reimplementar a verificação de e-mail se necessário.
-        setSession(newSession);
-        setUser(newSession.user);
-
+      if (_event === 'SIGNED_IN' && session) {
         const redirectUrl = sessionStorage.getItem('postLoginRedirect');
         if (redirectUrl) {
           sessionStorage.removeItem('postLoginRedirect');
-          // Redireciona para a URL de checkout externa
           window.location.href = redirectUrl;
         } else {
-          // Comportamento padrão: redireciona para o dashboard
           navigate('/dashboard');
         }
       } else if (_event === 'SIGNED_OUT') {
-        setSession(null);
-        setUser(null);
-        // A navegação será tratada pela função signOut para garantir o redirecionamento correto.
-      } else {
-        setSession(newSession);
-        setUser(newSession?.user ?? null);
+        navigate('/signin');
       }
-      
-      setLoading(false);
     });
 
     return () => {
@@ -117,7 +56,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (error) {
       console.error("Error logging out:", error);
     } else {
-      navigate('/signin');
+      // A navegação agora é tratada pelo onAuthStateChange
     }
     setLoading(false);
   };
