@@ -101,7 +101,7 @@ const LandingPlansSection: React.FC = () => {
     {
       id: 'premium',
       title: "Premium",
-      price: { monthly: "R$19,90", yearly: "R$199,97" },
+      price: { monthly: "R$19,90", yearly: "R$214,97" },
       period: { monthly: "/mês", yearly: "/ano" },
       description: "Para quem quer mais controle das finanças pessoais.",
       features: premiumFeatures,
@@ -111,7 +111,7 @@ const LandingPlansSection: React.FC = () => {
     {
       id: 'family',
       title: "Família",
-      price: { monthly: "R$59,90", yearly: "R$610,99" },
+      price: { monthly: "R$59,90", yearly: "R$647,97" },
       period: { monthly: "/mês", yearly: "/ano" },
       description: "Para famílias que querem controlar finanças juntos.",
       features: [
