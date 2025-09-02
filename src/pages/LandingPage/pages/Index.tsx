@@ -5,8 +5,13 @@ import SimpleIntelligent from "../sections/SimpleIntelligent";
 import MidCTA from "../sections/MidCTA";
 import Footer from "../sections/Footer";
 import TestimonialsV2 from "../../../sections/TestimonialsV2";
+import { trackSubscriptionConversion } from '../../../../src/utils/analytics'; // Importe sua função
  
  const Index = () => {
+   
+  useEffect(() => {
+    trackSubscriptionConversion();
+  }, []);
    const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
@@ -33,3 +38,7 @@ import TestimonialsV2 from "../../../sections/TestimonialsV2";
 };
 
 export default Index;
+function useEffect(arg0: () => void, arg1: undefined[]) {
+  throw new Error('Function not implemented.');
+}
+
