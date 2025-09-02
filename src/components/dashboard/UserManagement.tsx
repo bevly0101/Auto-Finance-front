@@ -95,7 +95,7 @@ const UserManagement: React.FC = () => {
 
     setIsLoading(true);
     try {
-      console.log('Iniciando exclusão completa do usuário:', userId);
+      //console.log('Iniciando exclusão completa do usuário:', userId);
 
       // Call the secure function that checks admin privileges
       const { data, error: functionError } = await supabase
@@ -120,7 +120,7 @@ const UserManagement: React.FC = () => {
       }
 
       if (data) {
-        console.log('Dados públicos excluídos com sucesso');
+        //console.log('Dados públicos excluídos com sucesso');
 
         // Try to delete from Supabase Auth (may fail if already deleted)
         try {
@@ -128,7 +128,7 @@ const UserManagement: React.FC = () => {
           if (authError && !authError.message.includes('User not found')) {
             console.warn('Aviso na exclusão do auth:', authError);
           } else {
-            console.log('Usuário excluído do auth com sucesso');
+            //console.log('Usuário excluído do auth com sucesso');
           }
         } catch (authErr) {
           console.warn('Usuário pode já ter sido excluído do auth:', authErr);

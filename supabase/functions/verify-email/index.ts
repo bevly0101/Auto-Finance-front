@@ -25,7 +25,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     const { token, userId }: VerifyEmailRequest = await req.json();
 
-    console.log('Verificando email para usuário:', userId);
+    //console.log('Verificando email para usuário:', userId);
 
     // Hash do token recebido
     const tokenHash = await crypto.subtle.digest(
@@ -147,7 +147,7 @@ const handler = async (req: Request): Promise<Response> => {
       .eq('user_id', userId)
       .eq('token_hash', tokenHashString);
 
-    console.log('Email verificado com sucesso para usuário:', userId);
+    //console.log('Email verificado com sucesso para usuário:', userId);
 
     return new Response(JSON.stringify({ 
       success: true,

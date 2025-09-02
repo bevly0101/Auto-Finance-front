@@ -52,7 +52,7 @@ const NotificationSettingsSection: React.FC = () => {
   };
 
   const handleSave = () => {
-    console.log('Salvando configurações de notificação:', settings);
+    //console.log('Salvando configurações de notificação:', settings);
     // Aqui você implementaria a lógica de salvamento
   };
 

@@ -35,7 +35,7 @@ const PrivacySettingsSection: React.FC = () => {
   };
 
   const handlePasswordChange = () => {
-    console.log('Alterando senha:', passwordData);
+    //console.log('Alterando senha:', passwordData);
     // Aqui você implementaria a lógica de mudança de senha
     setShowChangePassword(false);
     setPasswordData({ current: '', new: '', confirm: '' });

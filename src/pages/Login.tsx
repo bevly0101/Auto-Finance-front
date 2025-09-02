@@ -27,22 +27,22 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("handleSubmit triggered"); // Log 1
+    //console.log("handleSubmit triggered"); // Log 1
     setLoading(true);
     try {
-      console.log("Calling signIn from context..."); // Log 2
+      //console.log("Calling signIn from context..."); // Log 2
       await signIn(email, password, rememberMe);
-      console.log("signIn call succeeded."); // Log 3
+      //console.log("signIn call succeeded."); // Log 3
       // A navegação é tratada pelo onAuthStateChange no AuthContext
     } catch (error: any) {
-      console.log("Caught error:", error); // Log 4
+      //console.log("Caught error:", error); // Log 4
       toast({
         title: "Erro de Login",
         description: error.message === "Invalid login credentials" ? "Email ou senha inválidos." : error.message,
         variant: "destructive",
       });
     } finally {
-      console.log("Finally block executed."); // Log 5
+      //console.log("Finally block executed."); // Log 5
       setLoading(false);
     }
   };

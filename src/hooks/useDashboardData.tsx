@@ -386,9 +386,9 @@ export const useDashboardData = (especificarTipo: boolean, viewingArchive: Archi
 
   // Este useEffect calcula as proporções para o gráfico de pizza
   useEffect(() => {
-    console.log('DEBUG PIE: useEffect para proporções ativado.');
-    console.log('DEBUG PIE: allTransactions.length =', allTransactions.length);
-    console.log('DEBUG PIE: userBanks.length =', userBanks.length);
+    //console.log('DEBUG PIE: useEffect para proporções ativado.');
+    //console.log('DEBUG PIE: allTransactions.length =', allTransactions.length);
+    //console.log('DEBUG PIE: userBanks.length =', userBanks.length);
 
     if (allTransactions.length > 0 && userBanks.length > 0) {
       const startOfCurrentMonth = startOfMonth(new Date());
@@ -423,7 +423,7 @@ export const useDashboardData = (especificarTipo: boolean, viewingArchive: Archi
         });
       }
       
-      console.log('DEBUG PIE: Proporções calculadas:', proportions);
+      //console.log('DEBUG PIE: Proporções calculadas:', proportions);
       setBankTransactionProportions(proportions.filter(p => p.value > 0));
     }
   }, [allTransactions, userBanks]);

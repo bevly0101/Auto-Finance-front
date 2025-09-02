@@ -21,7 +21,7 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const { action, token, userId, newPassword }: RequestBody = await req.json();
     
-    console.log('Reset password request:', { action, userId, hasToken: !!token, hasNewPassword: !!newPassword });
+    //console.log('Reset password request:', { action, userId, hasToken: !!token, hasNewPassword: !!newPassword });
 
     if (!action || !token || !userId) {
       console.error('Parâmetros ausentes:', { action, hasToken: !!token, userId });
@@ -78,7 +78,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
     
-    console.log('Usuário encontrado:', { 
+    //console.log('Usuário encontrado:', { 
       userId: userData.id, 
       hasToken: !!userData.token_verificacao, 
       tokenExpiration: userData.token_expira_em 
@@ -86,7 +86,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Verificar se o token existe e não expirou
     if (!userData.token_verificacao || !userData.token_expira_em) {
-      console.log('Token não encontrado para usuário:', userId);
+      //console.log('Token não encontrado para usuário:', userId);
       return new Response(
         JSON.stringify({ error: 'Token inválido' }),
         { 
@@ -99,7 +99,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Verificar se o token não expirou
     const tokenExpiration = new Date(userData.token_expira_em);
     if (tokenExpiration < new Date()) {
-      console.log('Token expirado para usuário:', userId);
+      //console.log('Token expirado para usuário:', userId);
       return new Response(
         JSON.stringify({ error: 'Token expirado' }),
         { 
@@ -110,7 +110,7 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     // Verificar se o hash do token confere
-    console.log('Comparando tokens:', { 
+    //console.log('Comparando tokens:', { 
       receivedHash: tokenHash, 
       storedHash: userData.token_verificacao,
       match: userData.token_verificacao === tokenHash 
@@ -191,7 +191,7 @@ const handler = async (req: Request): Promise<Response> => {
         // Não falhar a operação por isso, mas registrar o erro
       }
 
-      console.log('Senha redefinida com sucesso para usuário:', userId);
+      //console.log('Senha redefinida com sucesso para usuário:', userId);
       return new Response(
         JSON.stringify({ success: true, message: 'Senha redefinida com sucesso' }),
         { 

@@ -39,7 +39,7 @@ export const useReminders = () => {
         throw error;
       }
 
-      console.log("Raw reminders from Supabase:", data);
+      //console.log("Raw reminders from Supabase:", data);
 
       if (data) {
         const processedReminders = data.flatMap(reminder => {
@@ -59,7 +59,7 @@ export const useReminders = () => {
           }
           return reminder;
         });
-        console.log("Processed reminders (with recurrence):", processedReminders);
+        //console.log("Processed reminders (with recurrence):", processedReminders);
         setReminders(processedReminders);
       }
     } catch (err: any) {

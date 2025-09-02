@@ -267,7 +267,7 @@ export class SidebarComponent {
 
   // Callback para mudanças de estado (pode ser sobrescrito)
   protected onStateChange(state: 'open' | 'close'): void {
-    console.log(`Sidebar ${state}`);
+    //console.log(`Sidebar ${state}`);
   }
 
   // Método para destruir o componente

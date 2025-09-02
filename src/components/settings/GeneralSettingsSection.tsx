@@ -42,9 +42,9 @@ const GeneralSettingsSection: React.FC = () => {
     });
 
     if (error) {
-      console.error('Erro ao atualizar o usuário:', error);
+      //console.error('Erro ao atualizar o usuário:', error);
     } else {
-      console.log('Usuário atualizado com sucesso:', data);
+      //console.log('Usuário atualizado com sucesso:', data);
     }
   };
 

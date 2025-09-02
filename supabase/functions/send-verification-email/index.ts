@@ -29,7 +29,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     const { email, userId, nome }: VerificationEmailRequest = await req.json();
 
-    console.log('Enviando email de verificação para:', email);
+    //console.log('Enviando email de verificação para:', email);
 
     // Gerar token de verificação
     const token = crypto.randomUUID();
@@ -120,7 +120,7 @@ const handler = async (req: Request): Promise<Response> => {
       `,
     });
 
-    console.log("Email enviado com sucesso:", emailResponse);
+    //console.log("Email enviado com sucesso:", emailResponse);
 
     return new Response(JSON.stringify({ 
       success: true, 

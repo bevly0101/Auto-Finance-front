@@ -36,7 +36,7 @@ Deno.serve(async (req) => {
         name: user.nome || user.username || ''
       };
 
-      console.log('Enviando dados para webhook n8n:', webhookData);
+      //console.log('Enviando dados para webhook n8n:', webhookData);
 
       // Enviar requisição POST para o webhook n8n
       const response = await fetch('https://webhook.autosfinance.com.br/webhook/6f86dabd-d143-4f85-a62b-20aa582886e1', {
@@ -49,7 +49,7 @@ Deno.serve(async (req) => {
 
       if (response.ok) {
         const responseText = await response.text();
-        console.log('Webhook enviado com sucesso:', responseText);
+        //console.log('Webhook enviado com sucesso:', responseText);
       } else {
         const errorText = await response.text();
         console.error('Erro ao enviar webhook:', response.status, errorText);

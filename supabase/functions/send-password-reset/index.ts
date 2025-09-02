@@ -42,7 +42,7 @@ const handler = async (req: Request): Promise<Response> => {
       .single();
 
     if (userError || !userData) {
-      console.log('Usuário não encontrado para email:', email);
+      //console.log('Usuário não encontrado para email:', email);
       return new Response(
         JSON.stringify({ error: 'Email não encontrado' }),
         { 
@@ -152,7 +152,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    console.log('Email de recuperação enviado para:', email);
+    //console.log('Email de recuperação enviado para:', email);
     return new Response(
       JSON.stringify({ success: true, message: 'Email de recuperação enviado' }),
       { 

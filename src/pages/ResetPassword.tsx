@@ -92,7 +92,7 @@ const ResetPassword = () => {
     setLoading(true);
 
     try {
-      console.log('Enviando solicitação de reset:', { token, userId });
+      //console.log('Enviando solicitação de reset:', { token, userId });
       
       const { data, error } = await supabase.functions.invoke('reset-password', {
         body: { 

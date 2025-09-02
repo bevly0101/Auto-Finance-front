@@ -150,7 +150,7 @@ const ProfileTabContent = () => {
       const cleanPhoneNumber = profile.phoneNumber.replace(/\D/g, '');
       const fullPhoneNumber = `${profile.countryCode.replace('+', '')}${cleanPhoneNumber}`;
       
-      console.log('Salvando telefone formatado:', fullPhoneNumber);
+      //console.log('Salvando telefone formatado:', fullPhoneNumber);
       
       const { error } = await supabase
         .from('users')
