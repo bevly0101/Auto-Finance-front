@@ -12,8 +12,8 @@ export const trackSubscriptionConversion = () => {
     window.gtag('event', 'conversion', {
       'send_to': CONVERSION_ID,
     });
-    console.log('Evento de conversão de assinatura enviado!');
+    //console.log('Evento de conversão de assinatura enviado!');
   } else {
-    console.warn('Google Tag (gtag.js) não foi encontrado.');
+    //console.warn('Google Tag (gtag.js) não foi encontrado.');
   }
 };
