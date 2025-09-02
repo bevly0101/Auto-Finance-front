@@ -1,3 +1,5 @@
+// PASSO 2: ADICIONE ESTA LINHA
+import { useEffect } from 'react'; 
 import '../landing-page.css';
 import Hero from "../sections/Hero";
 import Features from "../sections/Features";
@@ -5,13 +7,14 @@ import SimpleIntelligent from "../sections/SimpleIntelligent";
 import MidCTA from "../sections/MidCTA";
 import Footer from "../sections/Footer";
 import TestimonialsV2 from "../../../sections/TestimonialsV2";
-import { trackSubscriptionConversion } from '../../../../src/utils/analytics'; // Importe sua função
+import { trackSubscriptionConversion } from '../../../../src/utils/analytics';
  
  const Index = () => {
    
   useEffect(() => {
     trackSubscriptionConversion();
   }, []);
+
    const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
@@ -38,7 +41,5 @@ import { trackSubscriptionConversion } from '../../../../src/utils/analytics'; /
 };
 
 export default Index;
-function useEffect(arg0: () => void, arg1: undefined[]) {
-  throw new Error('Function not implemented.');
-}
 
+// PASSO 1: A FUNÇÃO QUE ESTAVA AQUI FOI REMOVIDA
