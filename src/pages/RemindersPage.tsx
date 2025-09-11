@@ -37,10 +37,10 @@ const RemindersPage: React.FC = () => {
       tempReminders = [];
     }
     setFilteredReminders(tempReminders);
-    console.log("Filtered reminders:", tempReminders);
+    //console.log("Filtered reminders:", tempReminders);
   }, [reminders, showRecurrent, showNonRecurrent]);
 
-  console.log("Selected view:", selectedView);
+  //console.log("Selected view:", selectedView);
 
   const handleAddReminder = async (newReminder: Omit<SupabaseReminder, 'id' | 'user_id'>) => {
     if (!user) {

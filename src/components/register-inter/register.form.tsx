@@ -24,7 +24,7 @@ const RegisterForm: React.FC = () => {
   const navigate = useNavigate();
 
   const handleGoogleLogin = () => {
-    console.log('Google registration initiated');
+    //console.log('Google registration initiated');
     alert('Cadastro com Google iniciado! (Integração OAuth será implementada)');
   };
 

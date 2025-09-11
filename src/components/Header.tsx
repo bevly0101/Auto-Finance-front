@@ -24,7 +24,7 @@ const Header = () => {
       toggleSidebar = sidebarToggle;
     } catch (error) {
       // Fallback if useSidebar fails
-      console.log('Sidebar not available on this page');
+      //console.log('Sidebar not available on this page');
     }
   }
 

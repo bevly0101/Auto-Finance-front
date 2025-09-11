@@ -113,7 +113,7 @@ const WhatsAppDemo = () => {
         handleReminderTimeInput(input);
       } else {
         // This will be for other conversational inputs not related to expenses
-        console.log("Processing other input:", input);
+        //console.log("Processing other input:", input);
       }
     }, 1000);
   };

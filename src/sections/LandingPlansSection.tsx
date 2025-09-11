@@ -49,12 +49,12 @@ const LandingPlansSection: React.FC = () => {
 
   const paymentLinks = {
     premium: {
-      monthly: "https://buy.stripe.com/28E6oI9YK4rm2T5akg9sk02",
-      yearly: "https://buy.stripe.com/dRm28s6My3ni8dp1NK9sk03",
+      monthly: "https://buy.stripe.com/bJe3cwb2O9LGctF1NK9sk09",
+      yearly: "https://buy.stripe.com/fZu4gA7QCf6065h1NK9sk0a",
     },
     family: {
-      monthly: "https://buy.stripe.com/8x23cw4Eq5vqalxeAw9sk04",
-      yearly: "https://buy.stripe.com/5kQ28sdaWaPKeBNakg9sk05",
+      monthly: "https://buy.stripe.com/8x25kEfj4ga4gJV4ZW9sk07",
+      yearly: "https://buy.stripe.com/4gM5kE2wif6065h4ZW9sk08",
     },
   };
 
