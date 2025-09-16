@@ -18,15 +18,31 @@ interface PricingCardProps {
   ctaText: string;
   popular?: boolean;
   onCtaClick: () => void;
+  billingCycle: 'monthly' | 'yearly';
+  setBillingCycle: (cycle: 'monthly' | 'yearly') => void;
+  isFree?: boolean;
 }
 
-const PricingCard: React.FC<PricingCardProps> = ({ title, price, period, description, features, ctaText, popular, onCtaClick }) => {
+const PricingCard: React.FC<PricingCardProps> = ({ title, price, period, description, features, ctaText, popular, onCtaClick, billingCycle, setBillingCycle, isFree }) => {
   return (
     <div className={`flex flex-col p-6 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 ${popular ? 'border-2 border-primary bg-card' : 'bg-card border border-border'}`}>
       {popular && <span className="text-xs font-semibold text-primary mb-2 self-start bg-primary/10 px-3 py-1 rounded-full">POPULAR</span>}
       <h3 className="mb-2 text-2xl font-bold text-foreground">{title}</h3>
       <div className="text-4xl font-extrabold text-foreground mb-4">{price}{period && <span className="text-xl font-medium text-muted-foreground">{period}</span>}</div>
       <p className="text-muted-foreground mb-6 h-12">{description}</p>
+      
+      {!isFree && (
+        <div className="flex items-center justify-center space-x-4 my-4 md:hidden">
+          <Label htmlFor={`billing-cycle-${title}`} className={billingCycle === 'monthly' ? 'text-foreground' : 'text-muted-foreground'}>Mensal</Label>
+          <Switch
+            id={`billing-cycle-${title}`}
+            checked={billingCycle === 'yearly'}
+            onCheckedChange={(checked) => setBillingCycle(checked ? 'yearly' : 'monthly')}
+          />
+          <Label htmlFor={`billing-cycle-${title}`} className={billingCycle === 'yearly' ? 'text-foreground' : 'text-muted-foreground'}>Anual</Label>
+        </div>
+      )}
+
       <ul className="mb-8 flex-grow space-y-3">
         {features.map((feature, index) => (
           <li key={index} className="flex items-start text-foreground/90">
@@ -133,7 +149,7 @@ const LandingPlansSection: React.FC = () => {
         Desbloqueie recursos avançados de gerenciamento financeiro e obtenha
         insights personalizados para controlar melhor seu dinheiro.
       </p>
-      <div className="flex items-center justify-center space-x-4 mt-8 mb-12">
+      <div className="hidden md:flex items-center justify-center space-x-4 mt-8 mb-12">
         <Label htmlFor="billing-cycle-cta" className={billingCycle === 'monthly' ? 'text-foreground' : 'text-muted-foreground'}>Mensal</Label>
         <Switch
           id="billing-cycle-cta"
@@ -154,6 +170,9 @@ const LandingPlansSection: React.FC = () => {
             ctaText={plan.ctaText}
             popular={plan.popular}
             onCtaClick={() => handleSubscribe(plan.id as 'premium' | 'family' | 'basic')}
+            billingCycle={billingCycle}
+            setBillingCycle={setBillingCycle}
+            isFree={plan.id === 'basic'}
           />
         ))}
       </div>
