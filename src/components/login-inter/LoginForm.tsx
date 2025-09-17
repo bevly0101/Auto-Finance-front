@@ -68,13 +68,8 @@ const LoginForm: React.FC = () => {
           </div>
 
           {/* Google Button */}
-          <GoogleButton onClick={handleGoogleLogin} className="mb-6" />
 
-          <div className="relative flex items-center">
-            <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
-            <span className="flex-shrink mx-4 text-gray-400 dark:text-gray-500 text-sm">OU</span>
-            <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
-          </div>
+          
 
           {/* Username Input */}
           <InputField

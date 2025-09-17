@@ -9,23 +9,21 @@ const PasswordStrength: React.FC<PasswordStrengthProps> = ({ password, className
   const calculateStrength = (password: string): { score: number; label: string; color: string } => {
     if (!password) return { score: 0, label: '', color: '' };
 
-    let score = 0;
-    
-    // Critérios de força
-    if (password.length >= 8) score += 1;
-    if (password.length >= 12) score += 1;
-    if (/[a-z]/.test(password)) score += 1;
-    if (/[A-Z]/.test(password)) score += 1;
-    if (/[0-9]/.test(password)) score += 1;
-    if (/[^A-Za-z0-9]/.test(password)) score += 1;
+    const checks = [
+      password.length >= 8,
+      /[A-Z]/.test(password),
+      /[0-9]/.test(password),
+      /[^A-Za-z0-9]/.test(password)
+    ];
+    const score = checks.filter(Boolean).length;
 
-    if (score <= 2) return { score, label: 'Fraca', color: 'bg-red-500' };
-    if (score <= 4) return { score, label: 'Média', color: 'bg-yellow-500' };
+    if (score <= 1) return { score, label: 'Fraca', color: 'bg-red-500' };
+    if (score <= 3) return { score, label: 'Média', color: 'bg-yellow-500' };
     return { score, label: 'Forte', color: 'bg-green-500' };
   };
 
   const strength = calculateStrength(password);
-  const percentage = (strength.score / 6) * 100;
+  const percentage = (strength.score / 4) * 100;
 
   if (!password) return null;
 

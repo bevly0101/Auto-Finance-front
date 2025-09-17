@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { User, Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { User, Mail, Lock, Eye, EyeOff, Ticket } from 'lucide-react';
 import Logo from '../login-inter/Logo';
 import InputField from '../login-inter/InputField';
 import GoogleButton from '../login-inter/GoogleButton';
@@ -47,14 +47,7 @@ const RegisterForm: React.FC = () => {
           </div>
 
           {/* Google Button */}
-          <GoogleButton onClick={handleGoogleLogin} className="mb-4" />
-
-          <div className="relative flex items-center">
-            <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
-            <span className="flex-shrink mx-4 text-gray-400 dark:text-gray-500 text-sm">OU</span>
-            <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
-          </div>
-
+          
           {/* Nome Completo */}
           <InputField
             type="text"
@@ -163,6 +156,17 @@ const RegisterForm: React.FC = () => {
               <p className="text-red-500 text-xs mt-1 px-1">{errors.confirmPassword}</p>
             )}
           </div>
+
+          {/* Invite Code */}
+          <InputField
+            type="text"
+            placeholder="Código de Convite (Opcional)"
+            value={formData.inviteCode}
+            onChange={(value) => updateField('inviteCode', value)}
+            icon={Ticket}
+            error={errors.inviteCode}
+            name="inviteCode"
+          />
 
           {/* Terms and Conditions */}
           <div className="flex items-start space-x-2">

@@ -1,9 +1,12 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from '@/components/ui/use-toast';
 
 export const useRegistrationForm = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [formData, setFormData] = useState({
     nomeCompleto: '',
     apelido: '',
@@ -12,12 +15,20 @@ export const useRegistrationForm = () => {
     telefone: '',
     password: '',
     confirmPassword: '',
-    acceptTerms: false
+    acceptTerms: false,
+    inviteCode: ''
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const navigate = useNavigate();
   const { signUp } = useAuth();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const code = params.get('code');
+    if (code) {
+      updateField('inviteCode', code);
+    }
+  }, [location.search]);
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -25,10 +36,14 @@ export const useRegistrationForm = () => {
   };
 
   const validatePasswordStrength = (password: string): boolean => {
-    return password.length >= 8 &&
-           /[A-Z]/.test(password) &&
-           /[0-9]/.test(password) &&
-           /[^A-Za-z0-9]/.test(password);
+    const checks = [
+      password.length >= 8,
+      /[A-Z]/.test(password),
+      /[0-9]/.test(password),
+      /[^A-Za-z0-9]/.test(password)
+    ];
+    const passedChecks = checks.filter(Boolean).length;
+    return passedChecks >= 2;
   };
 
   const updateField = (field: string, value: string | boolean) => {
@@ -85,7 +100,7 @@ export const useRegistrationForm = () => {
     if (!formData.password) {
       newErrors.password = 'Senha é obrigatória';
     } else if (!validatePasswordStrength(formData.password)) {
-      newErrors.password = 'A senha deve ter pelo menos 8 caracteres, incluindo maiúscula, número e caractere especial';
+      newErrors.password = 'A senha deve atender a pelo menos 2 dos seguintes critérios: 8 caracteres, uma maiúscula, um número e um caractere especial.';
     }
 
     if (!formData.confirmPassword) {
@@ -115,7 +130,8 @@ export const useRegistrationForm = () => {
         nome_completo: formData.nomeCompleto,
         apelido: formData.apelido,
         telefone_whatsapp: `${formData.countryCode.replace('+', '')}${formData.telefone}`,
-        verify_code: verifyCode
+        verify_code: verifyCode,
+        invite_code: formData.inviteCode
       };
       await signUp(formData.email, formData.password, metadata);
       const selectedPlanJSON = localStorage.getItem('selectedPlan');
