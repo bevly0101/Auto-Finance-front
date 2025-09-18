@@ -6,19 +6,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPageIndex from "./pages/LandingPage/pages/Index";
 import NotFound from "./pages/NotFound";
-import WhatsAppDemo from "./pages/WhatsAppDemo";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import VerifyEmail from "./pages/VerifyEmail";
 import Terms from "./pages/Terms";
-import Cookies from "./pages/Cookies";
-import Blog from "./pages/Blog";
 import Privacy from "./pages/Privacy";
 import About from "./pages/About";
-import Dashboard from "./pages/Dashboard";
-import Profile from "./pages/Profile";
-import ForgotPassword from "./pages/ForgotPassword";
-import ResetPassword from "./pages/ResetPassword";
 import DashboardPixelPerfect from "./pages/DashboardPixelPerfect";
 import AccountsPage from "./pages/AccountsPage";
 import TransactionsPage from "./pages/TransactionsPage";
@@ -52,14 +42,7 @@ const App = () => (
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/about" element={<About />} />
-            <Route
-              path="/verify-code"
-              element={
-                <ProtectedRoute>
-                  <VerifyCodePage />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/verify-code" element={<VerifyCodePage />} />
             <Route
               path="/dashboard"
               element={

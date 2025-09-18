@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from '@/components/ui/use-toast';
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
 
 export const useRegistrationForm = () => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ export const useRegistrationForm = () => {
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isLoading, setIsLoading] = useState(false);
   const { signUp } = useAuth();
 
   useEffect(() => {
@@ -57,6 +59,20 @@ export const useRegistrationForm = () => {
       if (field === 'email' && value) {
         if (!validateEmail(value)) {
           setErrors(prev => ({ ...prev, email: 'Por favor, insira um email válido' }));
+        }
+      }
+
+      if (field === 'telefone') {
+        const phoneNumber = parsePhoneNumberFromString(formData.countryCode + value);
+        if (!phoneNumber || !phoneNumber.isValid()) {
+          setErrors(prev => ({ ...prev, telefone: 'Número de telefone inválido' }));
+        }
+      }
+
+      if (field === 'countryCode') {
+        const phoneNumber = parsePhoneNumberFromString(value + formData.telefone);
+        if (phoneNumber && phoneNumber.isValid()) {
+          setErrors(prev => ({ ...prev, telefone: '' }));
         }
       }
 
@@ -124,6 +140,7 @@ export const useRegistrationForm = () => {
       return;
     }
 
+    setIsLoading(true);
     try {
       const verifyCode = Math.floor(100000 + Math.random() * 900000).toString();
       const metadata = {
@@ -134,27 +151,23 @@ export const useRegistrationForm = () => {
         invite_code: formData.inviteCode
       };
       await signUp(formData.email, formData.password, metadata);
-      const selectedPlanJSON = localStorage.getItem('selectedPlan');
-      if (selectedPlanJSON) {
-        const selectedPlan = JSON.parse(selectedPlanJSON);
-        localStorage.removeItem('selectedPlan'); // Limpa para não afetar futuros cadastros
-        window.location.href = selectedPlan.checkoutLink;
-      } else {
-        toast({
-          title: "Cadastro quase concluído!",
-          description: "Enviamos um código de verificação para o seu WhatsApp.",
-        });
-        navigate("/verify-code");
-      }
+      toast({
+        title: "Cadastro quase concluído!",
+        description: "Enviamos um código de verificação para o seu WhatsApp.",
+      });
+      navigate("/verify-code");
     } catch (error: any) {
       console.error("Erro ao cadastrar usuário:", error);
       setErrors({ ...errors, form: error.message });
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return {
     formData,
     errors,
+    isLoading,
     updateField,
     handleSubmit,
   };
