@@ -18,6 +18,8 @@ declare
 begin
   -- Log do início da função
   RAISE LOG 'handle_new_user: Iniciando para usuário %', new.id;
+
+  -- A função agora é acionada apenas por INSERT, então a verificação de TG_OP = 'UPDATE' foi removida por ser redundante.
   
   v_telefone := new.raw_user_meta_data ->> 'telefone_whatsapp';
   v_username := new.raw_user_meta_data ->> 'username';
@@ -36,8 +38,8 @@ begin
   IF EXISTS (SELECT 1 FROM public.users WHERE id = new.id) THEN
     RAISE LOG 'handle_new_user: Usuário % já existe na tabela public.users, atualizando...', new.id;
     
-    UPDATE public.users 
-    SET 
+    UPDATE public.users
+    SET
       email = new.email,
       telefone_whatsapp = v_telefone,
       username = v_username,

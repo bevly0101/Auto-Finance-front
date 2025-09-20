@@ -1,9 +1,8 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User } from 'lucide-react';
 import InputField from './InputField';
 import PasswordInput from './PasswordInput';
-import GoogleButton from './GoogleButton';
 import Logo from './Logo';
 import { useAuth } from '@/contexts/AuthContext';
 import { Checkbox } from "@/components/ui/checkbox";
@@ -30,13 +29,20 @@ const LoginForm: React.FC = () => {
     e.preventDefault();
     setError(null);
 
+    if (!email || !password) {
+      setError("Por favor, preencha o e-mail e a senha.");
+      return;
+    }
+
     try {
       await signIn(email, password, rememberMe);
-      //console.log('oi')
       // A navegação será tratada pelo AuthContext após a verificação do usuário
     } catch (error: any) {
-      console.error("Erro de autenticação:", error.message); // Adicionado para depuração
-      // Mapeia a mensagem de erro comum do Supabase para algo mais amigável
+      console.error("Erro de autenticação:", error.message);
+      
+      // A API do Supabase retorna 'Invalid login credentials' tanto para e-mail
+      // não encontrado quanto para senha incorreta. Isso é uma prática de
+      // segurança para evitar a enumeração de usuários.
       if (error.message.includes('Invalid login credentials')) {
         setError('E-mail ou senha inválidos.');
       } else {
