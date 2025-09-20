@@ -20,8 +20,7 @@ const PasswordStrength: React.FC<PasswordStrengthProps> = ({ password, className
     if (score <= 1) return { score, label: 'Fraca', color: 'bg-red-500' };
     if (score <= 3) return { score, label: 'Média', color: 'bg-yellow-500' };
     return { score, label: 'Forte', color: 'bg-green-500' };
-  };
-
+  }; 
   const strength = calculateStrength(password);
   const percentage = (strength.score / 4) * 100;
 
