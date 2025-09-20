@@ -48,7 +48,6 @@ import { trackSubscriptionConversion } from '../../../utils/analytics';
       <div id="plans">
         <LandingPlansSection />
       </div>
-      <MidCTA />
       <Footer />
       <link rel="canonical" href="/" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
