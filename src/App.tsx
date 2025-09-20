@@ -19,6 +19,7 @@ import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 import LandingPage from "./pages/LandingPage";
 import VerifyCodePage from "./pages/VerifyCodePage";
+import RedirectToLanding from "./pages/RedirectToLanding";
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -39,6 +40,7 @@ const App = () => (
                   <Route path="/" element={<LandingPageIndex />} />
                   <Route path="/signin" element={<SignInPage />} />
             <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/plans" element={<RedirectToLanding />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/about" element={<About />} />

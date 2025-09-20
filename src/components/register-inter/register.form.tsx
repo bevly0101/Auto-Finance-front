@@ -16,6 +16,7 @@ const RegisterForm: React.FC = () => {
     formData,
     errors,
     isLoading,
+    serverError,
     updateField,
     handleSubmit,
   } = useRegistrationForm();
@@ -46,6 +47,13 @@ const RegisterForm: React.FC = () => {
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white">Crie sua conta</h1>
             <p className="text-gray-500 dark:text-gray-400 mt-2">É rápido e fácil. Vamos começar!</p>
           </div>
+
+          {/* Server Error Message */}
+          {serverError && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative mb-4" role="alert">
+              <span className="block sm:inline">{serverError}</span>
+            </div>
+          )}
 
           {/* Google Button */}
           

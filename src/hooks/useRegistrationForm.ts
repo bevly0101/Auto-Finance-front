@@ -22,6 +22,7 @@ export const useRegistrationForm = () => {
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
   const { signUp } = useAuth();
 
   useEffect(() => {
@@ -135,6 +136,7 @@ export const useRegistrationForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setServerError(null);
 
     if (!validateForm()) {
       return;
@@ -158,7 +160,11 @@ export const useRegistrationForm = () => {
       navigate("/verify-code");
     } catch (error: any) {
       console.error("Erro ao cadastrar usuário:", error);
-      setErrors({ ...errors, form: error.message });
+      if (error.message.includes('User already registered')) {
+        setServerError('Este e-mail já está cadastrado. Tente fazer login.');
+      } else {
+        setServerError('Ocorreu um erro ao tentar cadastrar. Tente novamente mais tarde.');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -168,6 +174,7 @@ export const useRegistrationForm = () => {
     formData,
     errors,
     isLoading,
+    serverError,
     updateField,
     handleSubmit,
   };

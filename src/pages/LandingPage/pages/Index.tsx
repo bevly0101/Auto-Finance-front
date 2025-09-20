@@ -1,5 +1,6 @@
 // PASSO 2: ADICIONE ESTA LINHA
-import { useEffect } from 'react'; 
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import '../landing-page.css';
 import Hero from "../sections/Hero";
 import Features from "../sections/Features";
@@ -7,10 +8,22 @@ import SimpleIntelligent from "../sections/SimpleIntelligent";
 import MidCTA from "../sections/MidCTA";
 import Footer from "../sections/Footer";
 import TestimonialsV2 from "../../../sections/TestimonialsV2";
-import { trackSubscriptionConversion } from '../../../../src/utils/analytics';
- 
+import LandingPlansSection from '../../../sections/LandingPlansSection';
+import { trackSubscriptionConversion } from '../../../utils/analytics';
+
  const Index = () => {
-   
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
+
   useEffect(() => {
     trackSubscriptionConversion();
   }, []);
@@ -32,6 +45,9 @@ import { trackSubscriptionConversion } from '../../../../src/utils/analytics';
       <Features />
       <TestimonialsV2 />
       <SimpleIntelligent />
+      <div id="plans">
+        <LandingPlansSection />
+      </div>
       <MidCTA />
       <Footer />
       <link rel="canonical" href="/" />
