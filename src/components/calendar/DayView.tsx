@@ -3,17 +3,14 @@ import { Reminder } from '@/hooks/useReminders';
 
 interface DayViewProps {
   currentDate: Date;
-  reminders: Reminder[];
   onReminderClick: (reminder: Reminder) => void;
   getReminderColor: (reminder: Reminder) => string;
+  getRemindersForDate: (date: Date) => Reminder[];
 }
 
-const DayView: React.FC<DayViewProps> = ({ currentDate, reminders, onReminderClick, getReminderColor }) => {
+const DayView: React.FC<DayViewProps> = ({ currentDate, onReminderClick, getReminderColor, getRemindersForDate }) => {
   const hours = Array.from({ length: 24 }).map((_, i) => i);
-  const dayReminders = reminders.filter(reminder => {
-    const reminderDate = new Date(reminder.data_vencimento);
-    return reminderDate.toDateString() === currentDate.toDateString();
-  }).sort((a, b) => {
+  const dayReminders = getRemindersForDate(currentDate).sort((a, b) => {
     const timeA = a.val_time ? parseInt(a.val_time.replace(':', '')) : 0;
     const timeB = b.val_time ? parseInt(b.val_time.replace(':', '')) : 0;
     return timeA - timeB;

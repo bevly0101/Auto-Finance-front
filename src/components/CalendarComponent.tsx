@@ -64,7 +64,8 @@ const CalendarComponent: React.FC<CalendarComponentProps> = ({
 
   const getRemindersForDate = (date: Date) => {
     return reminders.filter(reminder => {
-      const reminderDate = new Date(reminder.data_vencimento);
+      // Corrige o problema de fuso horário adicionando o T00:00:00 para tratar como local
+      const reminderDate = new Date(reminder.data_vencimento + 'T00:00:00');
       return reminderDate.toDateString() === date.toDateString();
     }).sort((a, b) => {
       const timeA = a.val_time ? parseInt(a.val_time.replace(':', '')) : 0;
@@ -128,7 +129,7 @@ const CalendarComponent: React.FC<CalendarComponentProps> = ({
 
       {selectedView === 'Mês' && <MonthView currentDate={currentDate} onDateClick={handleDateClick} getRemindersForDate={getRemindersForDate} getReminderColor={getReminderColor} reminders={reminders} />}
       {selectedView === 'Semana' && <WeekView currentDate={currentDate} onDateClick={handleDateClick} getRemindersForDate={getRemindersForDate} getReminderColor={getReminderColor} reminders={reminders} />}
-      {selectedView === 'Dia' && <DayView currentDate={currentDate} onReminderClick={onReminderClick} getReminderColor={getReminderColor} reminders={reminders} />}
+      {selectedView === 'Dia' && <DayView currentDate={currentDate} onReminderClick={onReminderClick} getReminderColor={getReminderColor} getRemindersForDate={getRemindersForDate} />}
     </div>
   );
 };

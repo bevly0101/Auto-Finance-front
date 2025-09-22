@@ -37,12 +37,12 @@ export interface Reminder {
   valor?: number;
   descricao: string;
   data_vencimento: string;
-  hora_vencimento?: string;
+  val_time?: string;
   recorrente: boolean;
 }
 
 export async function getReminders(): Promise<Reminder[]> {
-  const { data, error } = await supabase.from("lembretes_pagamentos").select("id, titulo, valor, descricao, data_vencimento, hora_vencimento, recorrente");
+  const { data, error } = await supabase.from("lembretes_pagamentos").select("id, titulo, valor, descricao, data_vencimento, val_time, recorrente");
   if (error) {
     console.error("Erro ao buscar lembretes:", error);
     return [];

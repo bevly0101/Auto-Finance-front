@@ -11,7 +11,7 @@ interface MonthViewProps {
 
 const daysOfWeek = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'];
 
-const MonthView: React.FC<MonthViewProps> = ({ currentDate, onDateClick, getRemindersForDate, getReminderColor }) => {
+const MonthView: React.FC<MonthViewProps> = ({ currentDate, reminders, onDateClick, getRemindersForDate, getReminderColor }) => {
   const getDaysInMonth = () => {
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();

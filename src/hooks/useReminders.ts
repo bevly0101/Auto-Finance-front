@@ -39,27 +39,28 @@ export const useReminders = () => {
         throw error;
       }
 
-      //console.log("Raw reminders from Supabase:", data);
-
       if (data) {
         const processedReminders = data.flatMap(reminder => {
           if (reminder.recorrente) {
             const recurringReminders: Reminder[] = [];
-            const originalDate = new Date(reminder.data_vencimento);
+            const originalDate = new Date(reminder.data_vencimento + 'T00:00:00');
+            const originalDay = originalDate.getDate();
+
             for (let i = 0; i < 12; i++) { // Generate for the next 12 months
-              const newDate = new Date(originalDate);
-              newDate.setMonth(originalDate.getMonth() + i);
+              const newDate = new Date(originalDate.getFullYear(), originalDate.getMonth() + i, 1);
+              const daysInMonth = new Date(newDate.getFullYear(), newDate.getMonth() + 1, 0).getDate();
+              newDate.setDate(Math.min(originalDay, daysInMonth));
+
               recurringReminders.push({
                 ...reminder,
-                id: reminder.id + i * 100000, // Avoid key collision
-                data_vencimento: newDate.toISOString(),
+                id: `${reminder.id}-${i}`, // Use a string-based unique ID
+                data_vencimento: newDate.toISOString().split('T')[0], // Store as YYYY-MM-DD
               });
             }
             return recurringReminders;
           }
           return reminder;
         });
-        //console.log("Processed reminders (with recurrence):", processedReminders);
         setReminders(processedReminders);
       }
     } catch (err: any) {

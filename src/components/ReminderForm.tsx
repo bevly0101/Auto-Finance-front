@@ -9,7 +9,7 @@ interface ReminderFormProps {
     valor?: number;
     descricao: string;
     data_vencimento: string;
-    hora_vencimento?: string;
+    val_time?: string;
     recorrente: boolean;
   }) => void;
 }
@@ -20,7 +20,7 @@ const ReminderForm: React.FC<ReminderFormProps> = ({ isOpen, onClose, onSubmit }
     valor: '',
     descricao: '',
     data_vencimento: '',
-    hora_vencimento: '',
+    val_time: '',
     recorrente: false
   });
 
@@ -37,7 +37,7 @@ const ReminderForm: React.FC<ReminderFormProps> = ({ isOpen, onClose, onSubmit }
       valor: formData.valor ? parseFloat(formData.valor) : undefined,
       descricao: formData.descricao,
       data_vencimento: formData.data_vencimento,
-      hora_vencimento: formData.hora_vencimento,
+      val_time: formData.val_time,
       recorrente: formData.recorrente
     };
 
@@ -49,7 +49,7 @@ const ReminderForm: React.FC<ReminderFormProps> = ({ isOpen, onClose, onSubmit }
       valor: '',
       descricao: '',
       data_vencimento: '',
-      hora_vencimento: '',
+      val_time: '',
       recorrente: false
     });
     
@@ -151,14 +151,14 @@ const ReminderForm: React.FC<ReminderFormProps> = ({ isOpen, onClose, onSubmit }
 
           {/* Hora de Vencimento (Novo Campo) */}
           <div>
-            <label htmlFor="hora_vencimento" className="block text-sm font-medium text-foreground mb-1">
+            <label htmlFor="val_time" className="block text-sm font-medium text-foreground mb-1">
               Hora de Vencimento (Opcional)
             </label>
             <input
               type="time"
-              id="hora_vencimento"
-              name="hora_vencimento"
-              value={formData.hora_vencimento}
+              id="val_time"
+              name="val_time"
+              value={formData.val_time}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-input text-foreground"
             />

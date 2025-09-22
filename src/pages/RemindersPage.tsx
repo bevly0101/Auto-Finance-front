@@ -56,7 +56,8 @@ const RemindersPage: React.FC = () => {
 
   const upcomingReminders = filteredReminders
     .filter(r => {
-      const reminderDate = new Date(r.data_vencimento);
+      // Corrige o problema de fuso horário adicionando o T00:00:00 para tratar como local
+      const reminderDate = new Date(r.data_vencimento + 'T00:00:00');
       const today = new Date();
       const thirtyDaysFromNow = new Date();
       thirtyDaysFromNow.setDate(today.getDate() + 30);
@@ -103,7 +104,7 @@ const RemindersPage: React.FC = () => {
                       <div key={reminder.id} className="flex items-center justify-between p-2 bg-muted rounded-md cursor-pointer" onClick={() => setSelectedReminder(reminder)}>
                         <span className="text-xs sm:text-sm font-medium text-foreground">{reminder.titulo}</span>
                         <span className="text-xs text-muted-foreground">
-                          {new Date(reminder.data_vencimento).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' })}
+                          {new Date(reminder.data_vencimento + 'T00:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' })}
                         </span>
                       </div>
                     ))
