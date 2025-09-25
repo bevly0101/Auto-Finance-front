@@ -2,7 +2,8 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { CreditCard, QrCode } from 'lucide-react';
+import { CreditCard } from 'lucide-react';
+import PixIcon from '@/assets/pix-icon.svg';
 
 const planDetails = {
   premium: {
@@ -81,7 +82,7 @@ const ChoosePaymentMethodPage: React.FC = () => {
             className="w-full py-6 text-lg"
             variant="outline"
           >
-            <QrCode className="mr-3 h-6 w-6" />
+            <img src={PixIcon} alt="PIX" className="mr-3 h-6 w-6" />
             PIX
           </Button>
         </CardContent>
