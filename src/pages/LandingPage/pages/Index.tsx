@@ -10,7 +10,7 @@ import Footer from "../sections/Footer";
 import TestimonialsV2 from "../../../sections/TestimonialsV2";
 import LandingPlansSection from '../../../sections/LandingPlansSection';
 import { trackSubscriptionConversion } from '../../../utils/analytics';
-
+ 
  const Index = () => {
   const location = useLocation();
 

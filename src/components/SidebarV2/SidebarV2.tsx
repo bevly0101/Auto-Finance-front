@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Home, CreditCard, Users, BarChart3, LogOut, Settings, X } from "lucide-react";
+import { Home, CreditCard, Users, BarChart3, LogOut, Settings, X, ShieldCheck } from "lucide-react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -45,6 +45,12 @@ const SidebarV2: React.FC<SidebarV2Props> = ({ isOpen, toggleSidebar }) => {
       label: "Lembretes",
       icon: <BarChart3 className="w-5 h-5" />,
       path: "/reminders",
+    },
+    {
+      id: "myplan",
+      label: "Plano",
+      icon: <ShieldCheck className="w-5 h-5" />,
+      path: "/myplan",
     },
     {
       id: "settings",

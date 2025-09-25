@@ -33,7 +33,13 @@ export const useVerifyCode = () => {
           title: "Verificação Concluída",
           description: "Seu código foi verificado com sucesso!",
         });
-        navigate('/dashboard');
+        const redirectUrl = sessionStorage.getItem('postLoginRedirect');
+        if (redirectUrl) {
+          sessionStorage.removeItem('postLoginRedirect');
+          navigate(redirectUrl);
+        } else {
+          navigate('/dashboard');
+        }
       }
     }, 5000); // Check every 5 seconds
 
@@ -82,7 +88,13 @@ export const useVerifyCode = () => {
           title: "Verificação Concluída",
           description: "Seu código foi verificado com sucesso!",
         });
-        navigate('/dashboard');
+        const redirectUrl = sessionStorage.getItem('postLoginRedirect');
+        if (redirectUrl) {
+          sessionStorage.removeItem('postLoginRedirect');
+          navigate(redirectUrl);
+        } else {
+          navigate('/dashboard');
+        }
       } else {
         toast({
           title: "Código Incorreto",

@@ -1,7 +1,8 @@
 import React from "react";
-import { Button } from "../components/ui/button";
-import { useInViewOnce } from "../hooks/useInViewOnce";
-import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { useInViewOnce } from "@/hooks/useInViewOnce";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Logo = () => (
   <>
@@ -29,6 +30,8 @@ const Logo = () => (
 );
 
 const Hero = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const { ref: titleRef, inView: titleIn } = useInViewOnce();
   const { ref: descRef, inView: descIn } = useInViewOnce();
   const { ref: ctaRef, inView: ctaIn } = useInViewOnce();
@@ -41,14 +44,27 @@ const Hero = () => {
         <a href="#" className="story-link"><Logo /></a>
         <div className="flex items-center gap-5 md:gap-6 text-sm md:text-base text-muted-foreground">
           <a href="#planos" className="hover-scale">Planos</a>
-          <Link to="/signup" className="hover-scale">Cadastre-se</Link>
-          {/* Login com efeito + tamanhos responsivos */}
-          <Button asChild variant="hero" size="sm" className="rounded-full md:hidden">
-            <Link ref={loginRef as any} to="/signin" className="hover-scale">Login</Link>
-          </Button>
-          <Button asChild variant="hero" size="lg" className="rounded-full hidden md:inline-flex">
-            <Link to="/signin" className="hover-scale">Login</Link>
-          </Button>
+          {user ? (
+            <>
+              <Button variant="hero" size="sm" className="rounded-full md:hidden" onClick={() => navigate('/dashboard')}>
+                Dashboard
+              </Button>
+              <Button variant="hero" size="lg" className="rounded-full hidden md:inline-flex" onClick={() => navigate('/dashboard')}>
+                Dashboard
+              </Button>
+            </>
+          ) : (
+            <>
+              <Link to="/signup" className="hover-scale">Cadastre-se</Link>
+              {/* Login com efeito + tamanhos responsivos */}
+              <Button asChild variant="hero" size="sm" className="rounded-full md:hidden">
+                <Link ref={loginRef as any} to="/signin" className="hover-scale">Entrar</Link>
+              </Button>
+              <Button asChild variant="hero" size="lg" className="rounded-full hidden md:inline-flex">
+                <Link to="/signin" className="hover-scale">Entrar</Link>
+              </Button>
+            </>
+          )}
         </div>
       </nav>
 

@@ -1,7 +1,12 @@
 import React from 'react';
-import { Download } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
+import { Button } from '@/components/ui/button';
 
 const Header: React.FC = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
   return (
     <header className="bg-gray-50 py-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -10,16 +15,26 @@ const Header: React.FC = () => {
             <img src="/logo_autofinance2%20(1).png" alt="Autofinance Logo" className="h-8" />
           </div>
           <nav className="hidden md:flex space-x-8">
-            <a href="#" className="text-foreground hover:text-primary">Recursos</a>
-            <a href="#" className="text-foreground hover:text-primary">Preços</a>
-            <a href="#" className="text-foreground hover:text-primary">Sobre</a>
-            <a href="#" className="text-foreground hover:text-primary">Contato</a>
+            <a href="#recursos" className="text-foreground hover:text-primary">Recursos</a>
+            <a href="#precos" className="text-foreground hover:text-primary">Preços</a>
+            <a href="#sobre" className="text-foreground hover:text-primary">Sobre</a>
+            <a href="#contato" className="text-foreground hover:text-primary">Contato</a>
           </nav>
           <div className="flex items-center space-x-4">
-            <button className="flex items-center space-x-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
-              <Download className="w-4 h-4" />
-              <span>Baixar na App Store</span>
-            </button>
+            {user ? (
+              <Button onClick={() => navigate('/dashboard')}>
+                Dashboard
+              </Button>
+            ) : (
+              <>
+                <Button variant="ghost" onClick={() => navigate('/signin')}>
+                  Entrar
+                </Button>
+                <Button onClick={() => navigate('/signup')}>
+                  Cadastrar
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </div>

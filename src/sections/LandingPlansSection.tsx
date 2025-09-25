@@ -80,15 +80,14 @@ const LandingPlansSection: React.FC = () => {
       return;
     }
 
-    const checkoutLink = paymentLinks[planId][billingCycle];
+    const targetUrl = `/choose-payment/${planId}/${billingCycle}`;
 
     if (user) {
-      // Usuário está logado, redireciona direto para o checkout
-      // A lógica de upgrade/downgrade será tratada na página de checkout ou em um webhook
-      window.location.href = checkoutLink;
+      // Usuário está logado, redireciona para a página de escolha de pagamento
+      navigate(targetUrl);
     } else {
-      // Usuário não está logado, salva o link e redireciona para o cadastro
-      sessionStorage.setItem('postLoginRedirect', checkoutLink);
+      // Usuário não está logado, salva a URL de escolha de pagamento e redireciona para o cadastro
+      sessionStorage.setItem('postLoginRedirect', targetUrl);
       navigate('/signup');
     }
   };

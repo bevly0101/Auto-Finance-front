@@ -14,14 +14,15 @@ import {
   useSidebar 
 } from "@/components/ui/sidebar";
 import { 
-  LayoutDashboard, 
-  CreditCard, 
-  BarChart3, 
-  Settings, 
+  LayoutDashboard,
+  CreditCard,
+  BarChart3,
+  Settings,
   LogOut,
   User,
   PlusCircle,
-  TrendingUp
+  TrendingUp,
+  ShieldCheck
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -38,7 +39,7 @@ const FigmaSidebar: React.FC<FigmaSidebarProps> = ({
 }) => {
   const sidebar = useSidebar();
   const collapsed = sidebar.state === 'collapsed';
-  const { logout, user } = useAuth();
+  const { signOut: logout, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -58,6 +59,11 @@ const FigmaSidebar: React.FC<FigmaSidebarProps> = ({
       title: "Relatórios",
       url: "/reports", 
       icon: BarChart3,
+    },
+    {
+      title: "Plano",
+      url: "/myplan",
+      icon: ShieldCheck,
     },
     {
       title: "Configurações",

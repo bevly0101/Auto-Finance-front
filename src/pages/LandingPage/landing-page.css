@@ -27,3 +27,6 @@
     @apply bg-surface-indigo;
   }
 }
+.bg-gradient-cta {
+  background-image: linear-gradient(to right, #8A2BE2, #5900ff);
+}

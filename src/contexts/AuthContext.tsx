@@ -36,8 +36,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         const redirectUrl = sessionStorage.getItem('postLoginRedirect');
         if (redirectUrl) {
           sessionStorage.removeItem('postLoginRedirect');
-          window.location.href = redirectUrl;
-        } else {
+          navigate(redirectUrl);
+        } else if (window.location.pathname === '/signin' || window.location.pathname === '/signup') {
+          // Apenas redireciona para o dashboard se o login foi feito das páginas de auth
           navigate('/dashboard');
         }
       } else if (_event === 'SIGNED_OUT') {
@@ -64,13 +65,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const signIn = async (email: string, password: string, rememberMe = false) => {
     setLoading(true);
 
-    // Verifica se já existe uma sessão ativa
-    const { data: { session: activeSession } } = await supabase.auth.getSession();
-    if (activeSession) {
-      navigate('/dashboard');
-      setLoading(false);
-      return;
-    }
+    // A verificação de sessão ativa foi removida para permitir que usuários logados acessem a landing page.
+    // O redirecionamento agora é tratado pelo onAuthStateChange.
     
     // Removida a criação de um novo cliente para usar a instância global,
     // resolvendo o aviso "Multiple GoTrueClient instances".
