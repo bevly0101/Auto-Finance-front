@@ -131,7 +131,7 @@ const PixPaymentPage: React.FC = () => {
                   onClick={() => {
                     navigator.clipboard.writeText(pixCode);
                     // Idealmente, usar um toast para notificar o usuário
-                    //alert('Código PIX copiado!');
+                    alert('Código PIX copiado!');
                   }}
                 >
                   Copiar
