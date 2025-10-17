@@ -22,12 +22,22 @@ const Hero = () => {
               Simplifique o controle do seu dinheiro com nossa plataforma inteligente. Economize tempo, evite gastos desnecessários e tenha insights valiosos sobre seus hábitos financeiros.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/login"> {/* Alterado de /plans para /login */}
-                <Button className="bg-autofinance-blue hover:bg-autofinance-blue-dark text-white px-8 py-6 rounded-lg text-lg flex items-center">
-                  Iniciar Teste Gratuito
-                  <ChevronRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
+              <Button
+                onClick={() => {
+                  const plansSection = document.getElementById('plans');
+                  if (plansSection) {
+                    const offset = window.innerWidth < 768 ? window.innerHeight / 2 - plansSection.offsetHeight / 2 : 0;
+                    window.scrollTo({
+                      top: plansSection.offsetTop - offset,
+                      behavior: 'smooth'
+                    });
+                  }
+                }}
+                className="bg-autofinance-blue hover:bg-autofinance-blue-dark text-white px-8 py-6 rounded-lg text-lg flex items-center"
+              >
+                Começe Agora
+                <ChevronRight className="ml-2 h-5 w-5" />
+              </Button>
               <Link to="/whatsapp-demo">
                 <Button variant="outline" className="border-gray-300 text-gray-700 px-8 py-6 rounded-lg text-lg">
                   Demonstração

@@ -7,6 +7,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 
 import { useAuth } from '@/contexts/AuthContext';
+import { paymentLinks } from '@/constants';
 
 // Componente PricingCard
 interface PricingCardProps {
@@ -25,7 +26,7 @@ interface PricingCardProps {
 
 const PricingCard: React.FC<PricingCardProps> = ({ title, price, period, description, features, ctaText, popular, onCtaClick, billingCycle, setBillingCycle, isFree }) => {
   return (
-    <div className={`flex flex-col p-6 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 ${popular ? 'border-2 border-primary bg-card' : 'bg-card border border-border'}`}>
+    <div data-plan-id={title.toLowerCase()} className={`flex flex-col p-6 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 ${popular ? 'border-2 border-primary bg-card' : 'bg-card border border-border'}`}>
       {popular && <span className="text-xs font-semibold text-primary mb-2 self-start bg-primary/10 px-3 py-1 rounded-full">POPULAR</span>}
       <h3 className="mb-2 text-2xl font-bold text-foreground">{title}</h3>
       <div className="text-4xl font-extrabold text-foreground mb-4">{price}{period && <span className="text-xl font-medium text-muted-foreground">{period}</span>}</div>
@@ -62,17 +63,6 @@ const LandingPlansSection: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth(); // Usar o hook de autenticação
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
-
-  const paymentLinks = {
-    premium: {
-      monthly: "https://buy.stripe.com/bJe3cwb2O9LGctF1NK9sk09",
-      yearly: "https://buy.stripe.com/fZu4gA7QCf6065h1NK9sk0a",
-    },
-    family: {
-      monthly: "https://buy.stripe.com/8x25kEfj4ga4gJV4ZW9sk07",
-      yearly: "https://buy.stripe.com/4gM5kE2wif6065h4ZW9sk08",
-    },
-  };
 
   const handleSubscribe = (planId: 'premium' | 'family' | 'basic') => {
     if (planId === 'basic') {

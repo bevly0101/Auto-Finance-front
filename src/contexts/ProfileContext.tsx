@@ -7,12 +7,15 @@ interface UserProfile {
   plano_id: number;
   nome?: string;
   // adicione outros campos do perfil conforme necessário
+  on_tutorial: boolean;
+  verified_code: boolean;
 }
 
 interface ProfileContextType {
   profile: UserProfile | null;
   loading: boolean;
   fetchProfile: () => Promise<void>;
+  setProfile: React.Dispatch<React.SetStateAction<UserProfile | null>>;
 }
 
 const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
@@ -28,7 +31,7 @@ export const ProfileProvider: React.FC<{ children: ReactNode }> = ({ children })
       try {
         const { data, error, status } = await supabase
           .from('users')
-          .select(`id, plano_id, nome `)
+          .select(`id, plano_id, nome, on_tutorial, verified_code`)
           .eq('id', user.id)
           .single();
 
@@ -52,7 +55,7 @@ export const ProfileProvider: React.FC<{ children: ReactNode }> = ({ children })
   }, [fetchProfile]);
 
   return (
-    <ProfileContext.Provider value={{ profile, loading, fetchProfile }}>
+    <ProfileContext.Provider value={{ profile, loading, fetchProfile, setProfile }}>
       {children}
     </ProfileContext.Provider>
   );

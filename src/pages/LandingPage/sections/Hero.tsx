@@ -90,10 +90,26 @@ const Hero = () => {
             ref={ctaRef as any}
             variant="hero"
             size="lg"
-            asChild
             className={`rounded-full px-8 ${ctaIn ? "animate-fade-in" : "opacity-0"}`}
+            onClick={() => {
+              const plansSection = document.getElementById('plans');
+              if (plansSection) {
+                // Para mobile, rola até que o card de plano premium esteja no meio da tela.
+                if (window.innerWidth < 768) {
+                  const premiumCard = plansSection.querySelector('[data-plan-id="premium"]'); // Assumindo que você pode adicionar este atributo
+                  if (premiumCard) {
+                    const elementRect = premiumCard.getBoundingClientRect();
+                    const absoluteElementTop = elementRect.top + window.pageYOffset;
+                    const middle = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
+                    window.scrollTo({ top: middle, behavior: 'smooth' });
+                  }
+                } else {
+                  plansSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }
+            }}
           >
-            <Link to="/signup">comece seu Teste gratuito</Link>
+            Começe Agora
           </Button>
         </div>
       </section>

@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { CreditCard } from 'lucide-react';
 import PixIcon from '@/assets/pix-icon.svg';
+import { paymentLinks } from '@/constants';
 
 const planDetails = {
   premium: {
@@ -13,17 +14,6 @@ const planDetails = {
   family: {
     monthly: { name: 'Família Mensal', price: 'R$59,90' },
     yearly: { name: 'Família Anual', price: 'R$647,97' },
-  },
-};
-
-const paymentLinks = {
-  premium: {
-    monthly: "https://buy.stripe.com/bJe3cwb2O9LGctF1NK9sk09",
-    yearly: "https://buy.stripe.com/fZu4gA7QCf6065h1NK9sk0a",
-  },
-  family: {
-    monthly: "https://buy.stripe.com/8x25kEfj4ga4gJV4ZW9sk07",
-    yearly: "https://buy.stripe.com/4gM5kE2wif6065h4ZW9sk08",
   },
 };
 

@@ -23,10 +23,12 @@ import ChoosePaymentMethodPage from "./pages/ChoosePaymentMethodPage";
 import PixPaymentPage from "./pages/PixPaymentPage";
 import RedirectToLanding from "./pages/RedirectToLanding";
 import MyPlanPage from "./pages/MyPlanPage";
+import FreeTrialOfferPage from "./pages/FreeTrialOfferPage";
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { ProfileProvider } from "./contexts/ProfileContext";
+import TutorialStories from "./components/TutorialStories";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +41,7 @@ const App = () => (
           <ThemeProvider>
             <AuthProvider>
               <ProfileProvider>
+                <TutorialStories />
                 <Routes>
                   <Route path="/" element={<LandingPageIndex />} />
                   <Route path="/signin" element={<SignInPage />} />
@@ -48,6 +51,7 @@ const App = () => (
             <Route path="/terms" element={<Terms />} />
             <Route path="/about" element={<About />} />
             <Route path="/verify-code" element={<VerifyCodePage />} />
+            <Route path="/free-trial-offer" element={<FreeTrialOfferPage />} />
             <Route
               path="/choose-payment/:planId/:billingCycle"
               element={
