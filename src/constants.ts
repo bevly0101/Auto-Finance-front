@@ -1,10 +1,10 @@
 export const paymentLinks = {
   premium: {
-    monthly: "https://pay.cakto.com.br/qxg2ykd_609186",
-    yearly: "https://pay.cakto.com.br/k6uqmf4_611595",
+    monthly: "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=2ccf33510be24ca7936ef46f0cca47c3",
+    yearly: "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=c996dabf17d740e4a0e16db616da3921",
   },
   family: {
-    monthly: "https://pay.cakto.com.br/q6sq6sb_609200",
-    yearly: "https://pay.cakto.com.br/zde6cbv_611599",
+    monthly: "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=c996dabf17d740e4a0e16db616da3921",
+    yearly: "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=c996dabf17d740e4a0e16db616da3921",
   },
 };
