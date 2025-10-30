@@ -9,6 +9,7 @@ interface UserProfile {
   // adicione outros campos do perfil conforme necessário
   on_tutorial: boolean;
   verified_code: boolean;
+  credit_card_for_test: boolean;
 }
 
 interface ProfileContextType {
@@ -31,7 +32,7 @@ export const ProfileProvider: React.FC<{ children: ReactNode }> = ({ children })
       try {
         const { data, error, status } = await supabase
           .from('users')
-          .select(`id, plano_id, nome, on_tutorial, verified_code`)
+          .select(`id, plano_id, nome, on_tutorial, verified_code, credit_card_for_test`)
           .eq('id', user.id)
           .single();
 

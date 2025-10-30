@@ -28,7 +28,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { ProfileProvider } from "./contexts/ProfileContext";
-import TutorialStories from "./components/TutorialStories";
+import DashboardTutorialLayout from "./layouts/DashboardTutorialLayout";
 
 const queryClient = new QueryClient();
 
@@ -41,7 +41,6 @@ const App = () => (
           <ThemeProvider>
             <AuthProvider>
               <ProfileProvider>
-                <TutorialStories />
                 <Routes>
                   <Route path="/" element={<LandingPageIndex />} />
                   <Route path="/signin" element={<SignInPage />} />
@@ -72,7 +71,9 @@ const App = () => (
               path="/dashboard"
               element={
                 <ProtectedRoute>
-                  <DashboardPixelPerfect />
+                  <DashboardTutorialLayout>
+                    <DashboardPixelPerfect />
+                  </DashboardTutorialLayout>
                 </ProtectedRoute>
               }
             />
@@ -80,7 +81,9 @@ const App = () => (
               path="/accounts"
               element={
                 <ProtectedRoute>
-                  <AccountsPage />
+                  <DashboardTutorialLayout>
+                    <AccountsPage />
+                  </DashboardTutorialLayout>
                 </ProtectedRoute>
               }
             />
@@ -88,7 +91,9 @@ const App = () => (
               path="/transactions"
               element={
                 <ProtectedRoute>
-                  <TransactionsPage />
+                  <DashboardTutorialLayout>
+                    <TransactionsPage />
+                  </DashboardTutorialLayout>
                 </ProtectedRoute>
               }
             />
@@ -96,7 +101,9 @@ const App = () => (
               path="/reminders"
               element={
                 <ProtectedRoute>
-                  <RemindersPage />
+                  <DashboardTutorialLayout>
+                    <RemindersPage />
+                  </DashboardTutorialLayout>
                 </ProtectedRoute>
               }
             />
@@ -112,7 +119,9 @@ const App = () => (
               path="/settings"
               element={
                 <ProtectedRoute>
-                  <Settings />
+                  <DashboardTutorialLayout>
+                    <Settings />
+                  </DashboardTutorialLayout>
                 </ProtectedRoute>
               }
             />
@@ -120,7 +129,9 @@ const App = () => (
               path="/myplan"
               element={
                 <ProtectedRoute>
-                  <MyPlanPage />
+                  <DashboardTutorialLayout>
+                    <MyPlanPage />
+                  </DashboardTutorialLayout>
                 </ProtectedRoute>
               }
             />
