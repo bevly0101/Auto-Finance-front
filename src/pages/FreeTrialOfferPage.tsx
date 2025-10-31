@@ -7,7 +7,7 @@ const FreeTrialOfferPage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleProceed = () => {
-    navigate('/plans');
+    window.location.href = 'https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=64e63c37c840423d8ddd815983341bb6';
   };
 
   return (
