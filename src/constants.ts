@@ -1,10 +1,10 @@
 export const paymentLinks = {
   premium: {
-    monthly: "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=2ccf33510be24ca7936ef46f0cca47c3",
-    yearly: "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=c996dabf17d740e4a0e16db616da3921",
+    monthly: "https://buy.stripe.com/9B628tggVftt6rg2BCafS04",
+    yearly: "https://buy.stripe.com/00wcN73u9dllcPE5NOafS03",
   },
   family: {
-    monthly: "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=c996dabf17d740e4a0e16db616da3921",
-    yearly: "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=c996dabf17d740e4a0e16db616da3921",
+    monthly: "https://buy.stripe.com/8x25kF7Kpbdd5nc1xyafS02",
+    yearly: "https://buy.stripe.com/6oU4gBaWB6WX8zoa44afS01",
   },
 };

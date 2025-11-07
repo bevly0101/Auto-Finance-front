@@ -10,7 +10,7 @@ const FreeTrialBlocker: React.FC = () => {
 
   const handleGoToPlans = () => {
     setIsVisible(false);
-    window.location.href = 'https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=64e63c37c840423d8ddd815983341bb6';
+    window.location.href = 'https://buy.stripe.com/5kQ9AVggV2GH3f46RSafS05';
   };
 
   if (isVisible && profile?.plano_id === 4 && !profile?.credit_card_for_test) {
