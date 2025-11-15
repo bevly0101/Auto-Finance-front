@@ -2,6 +2,8 @@
   <img src="https://autofinances.com.br/lovable-uploads/851f6320-cf7d-44af-a64f-4837d69bd9bd.png" alt="Autofinance Logo" width="300"/>
 </p>
 
+<a href="https://autofinances.com.br">Acessar Site</a>
+
 <h1 align="center">💸 Autofinance – Agente Financeiro Digital</h1>
 
 <p align="center">
@@ -57,14 +59,3 @@ Com ele, você pode **registrar gastos e entradas, configurar lembretes, analisa
 5. O usuário acompanha entradas, saídas e saldo atualizado em tempo real.  
 
 ---
-
-## 📊 Fluxo de Funcionalidades  
-
-```mermaid
-flowchart TD
-    A[Usuário envia comando via WhatsApp] --> B{Texto, Áudio, Imagem ou PDF}
-    B -->|OCR + IA| C[Processamento no n8n]
-    C --> D[Supabase: salvar gasto/entrada]
-    C --> E[Supabase: criar lembrete]
-    D --> F[Dashboard atualizado em tempo real]
-    E --> F
