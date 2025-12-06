@@ -29,6 +29,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { ProfileProvider } from "./contexts/ProfileContext";
 import DashboardTutorialLayout from "./layouts/DashboardTutorialLayout";
+import TutorialTestPage from "./pages/TutorialTestPage";
 
 const queryClient = new QueryClient();
 
@@ -38,107 +39,108 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-          <ThemeProvider>
-            <AuthProvider>
-              <ProfileProvider>
-                <Routes>
-                  <Route path="/" element={<LandingPageIndex />} />
-                  <Route path="/signin" element={<SignInPage />} />
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/plans" element={<RedirectToLanding />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/verify-code" element={<VerifyCodePage />} />
-            <Route path="/free-trial-offer" element={<FreeTrialOfferPage />} />
-            <Route
-              path="/choose-payment/:planId/:billingCycle"
-              element={
-                <ProtectedRoute>
-                  <ChoosePaymentMethodPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/pix-payment/:planId/:billingCycle"
-              element={
-                <ProtectedRoute>
-                  <PixPaymentPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <DashboardTutorialLayout>
-                    <DashboardPixelPerfect />
-                  </DashboardTutorialLayout>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/accounts"
-              element={
-                <ProtectedRoute>
-                  <DashboardTutorialLayout>
-                    <AccountsPage />
-                  </DashboardTutorialLayout>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/transactions"
-              element={
-                <ProtectedRoute>
-                  <DashboardTutorialLayout>
-                    <TransactionsPage />
-                  </DashboardTutorialLayout>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/reminders"
-              element={
-                <ProtectedRoute>
-                  <DashboardTutorialLayout>
-                    <RemindersPage />
-                  </DashboardTutorialLayout>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/estatistics"
-              element={
-                <ProtectedRoute>
-                  <Estatistics />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/settings"
-              element={
-                <ProtectedRoute>
-                  <DashboardTutorialLayout>
-                    <Settings />
-                  </DashboardTutorialLayout>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/myplan"
-              element={
-                <ProtectedRoute>
-                  <DashboardTutorialLayout>
-                    <MyPlanPage />
-                  </DashboardTutorialLayout>
-                </ProtectedRoute>
-              }
-            />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </ProfileProvider>
-            </AuthProvider>
+        <ThemeProvider>
+          <AuthProvider>
+            <ProfileProvider>
+              <Routes>
+                <Route path="/" element={<LandingPageIndex />} />
+                <Route path="/signin" element={<SignInPage />} />
+                <Route path="/signup" element={<SignUpPage />} />
+                <Route path="/plans" element={<RedirectToLanding />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/verify-code" element={<VerifyCodePage />} />
+                <Route path="/free-trial-offer" element={<FreeTrialOfferPage />} />
+                <Route
+                  path="/choose-payment/:planId/:billingCycle"
+                  element={
+                    <ProtectedRoute>
+                      <ChoosePaymentMethodPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/pix-payment/:planId/:billingCycle"
+                  element={
+                    <ProtectedRoute>
+                      <PixPaymentPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard"
+                  element={
+                    <ProtectedRoute>
+                      <DashboardTutorialLayout>
+                        <DashboardPixelPerfect />
+                      </DashboardTutorialLayout>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/accounts"
+                  element={
+                    <ProtectedRoute>
+                      <DashboardTutorialLayout>
+                        <AccountsPage />
+                      </DashboardTutorialLayout>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/transactions"
+                  element={
+                    <ProtectedRoute>
+                      <DashboardTutorialLayout>
+                        <TransactionsPage />
+                      </DashboardTutorialLayout>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/reminders"
+                  element={
+                    <ProtectedRoute>
+                      <DashboardTutorialLayout>
+                        <RemindersPage />
+                      </DashboardTutorialLayout>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/estatistics"
+                  element={
+                    <ProtectedRoute>
+                      <Estatistics />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/settings"
+                  element={
+                    <ProtectedRoute>
+                      <DashboardTutorialLayout>
+                        <Settings />
+                      </DashboardTutorialLayout>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/myplan"
+                  element={
+                    <ProtectedRoute>
+                      <DashboardTutorialLayout>
+                        <MyPlanPage />
+                      </DashboardTutorialLayout>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="/tour" element={<TutorialTestPage />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </ProfileProvider>
+          </AuthProvider>
         </ThemeProvider>
       </BrowserRouter>
     </TooltipProvider>

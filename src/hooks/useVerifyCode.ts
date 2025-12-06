@@ -33,7 +33,7 @@ export const useVerifyCode = () => {
           title: "Verificação Concluída",
           description: "Seu código foi verificado com sucesso!",
         });
-        navigate('/free-trial-offer');
+        navigate('/dashboard');
       }
     }, 5000); // Check every 5 seconds
 
@@ -53,12 +53,12 @@ export const useVerifyCode = () => {
     }
 
     if (code.length !== 6) {
-        toast({
-            title: "Código Inválido",
-            description: "O código de verificação deve ter 6 dígitos.",
-            variant: "destructive",
-        });
-        return;
+      toast({
+        title: "Código Inválido",
+        description: "O código de verificação deve ter 6 dígitos.",
+        variant: "destructive",
+      });
+      return;
     }
 
     setLoading(true);
@@ -82,7 +82,7 @@ export const useVerifyCode = () => {
           title: "Verificação Concluída",
           description: "Seu código foi verificado com sucesso!",
         });
-        navigate('/free-trial-offer');
+        navigate('/dashboard');
       } else {
         toast({
           title: "Código Incorreto",
