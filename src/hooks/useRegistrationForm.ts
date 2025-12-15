@@ -27,7 +27,7 @@ export const useRegistrationForm = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const code = params.get('code');
+    const code = params.get('code') || params.get('cupom');
     if (code) {
       updateField('inviteCode', code);
     }
