@@ -33,9 +33,9 @@ Com ele, você pode **registrar gastos e entradas, configurar lembretes, analisa
 ✅ Registro de **gastos e entradas** por texto, áudio ou imagem/PDF  
 ✅ **Lembretes inteligentes** de pagamentos (ex: aluguel, cartão, internet)  
 ✅ **Dashboard em tempo real** com entradas, saídas e saldo atualizado  
-✅ **Classificação automática** por categorias (ex: alimentação, transporte, lazer)  
-✅ Edição e exclusão de movimentações com comandos simples  
-✅ **OCR e IA** para extrair dados de recibos e notas fiscais  
+✅ **Classificação automática** por categorias (ex: alimentação, transporte, lazer) e voce pode customizar suas próprias categorias.
+✅ Edição e exclusão de movimentações com comandos simples.
+✅ Definir metas e limites financeiros.
 
 ---
 
@@ -50,12 +50,3 @@ Com ele, você pode **registrar gastos e entradas, configurar lembretes, analisa
 
 ---
 
-## 🧭 Como Funciona  
-
-1. O usuário cria sua conta e recebe um **ID único** no Supabase.  
-2. Pelo **WhatsApp**, ele pode enviar texto, áudio, imagem ou PDF.  
-3. O sistema identifica o comando e aciona a ferramenta correta (ex: registrar gasto, criar lembrete).  
-4. Os dados são salvos no banco de dados e exibidos no **dashboard online**.  
-5. O usuário acompanha entradas, saídas e saldo atualizado em tempo real.  
-
----
